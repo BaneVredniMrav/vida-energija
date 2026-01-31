@@ -1,5 +1,8 @@
 <script setup>
+import { computed } from 'vue'
+
 const currentYear = new Date().getFullYear()
+const logoUrl = computed(() => `${import.meta.env.BASE_URL}logo.png`)
 
 const quickLinks = [
   { name: 'Početna', to: '/' },
@@ -26,9 +29,9 @@ const services = [
         <div class="lg:col-span-1">
           <router-link to="/">
             <img 
-              src="/logo.png" 
+              :src="logoUrl" 
               alt="Vida Energija" 
-              class="h-10 w-auto brightness-0 invert mb-4"
+              class="h-32 lg:h-48 w-auto brightness-0 invert mb-4"
             />
           </router-link>
           <p class="text-gray-400 text-sm mt-4">

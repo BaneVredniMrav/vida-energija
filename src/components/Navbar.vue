@@ -1,9 +1,11 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 const isMenuOpen = ref(false)
 const route = useRoute()
+
+const logoUrl = computed(() => `${import.meta.env.BASE_URL}logo.png`)
 
 const navLinks = [
   { name: 'Početna', to: '/' },
@@ -25,14 +27,14 @@ const isActive = (to) => {
         <!-- Logo -->
         <router-link to="/" class="flex items-center gap-2">
           <img 
-            src="/logo.png" 
-            alt="Вида Енергија" 
-            class="h-10 lg:h-12 w-auto"
+            :src="logoUrl" 
+            alt="Vida Energija" 
+            class="h-32 lg:h-48 w-auto"
           />
         </router-link>
 
         <!-- Desktop Navigation -->
-        <div class="hidden md:flex items-center gap-8">
+        <div class="hidden lg:flex items-center gap-8">
           <router-link 
             v-for="link in navLinks" 
             :key="link.name"
@@ -52,7 +54,7 @@ const isActive = (to) => {
         <!-- Mobile Menu Button -->
         <button 
           @click="isMenuOpen = !isMenuOpen"
-          class="md:hidden p-2 text-gray-700 hover:text-vida-500"
+          class="lg:hidden p-2 text-gray-700 hover:text-vida-500"
           aria-label="Toggle menu"
         >
           <svg v-if="!isMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -67,7 +69,7 @@ const isActive = (to) => {
       <!-- Mobile Menu -->
       <div 
         v-show="isMenuOpen"
-        class="md:hidden py-4 border-t border-gray-100"
+        class="lg:hidden py-4 border-t border-gray-100"
       >
         <div class="flex flex-col gap-4">
           <router-link 
