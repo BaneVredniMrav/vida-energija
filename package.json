@@ -1,0 +1,36 @@
+{
+  "name": "vida-energija",
+  "version": "1.0.0",
+  "description": "Вида Енергија - Професионални електроинсталатерски услуги",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BaneVredniMrav/vida-energija.git"
+  },
+  "keywords": [
+    "електричар",
+    "електроинсталации",
+    "vida-energija"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BaneVredniMrav/vida-energija/issues"
+  },
+  "homepage": "https://github.com/BaneVredniMrav/vida-energija#readme",
+  "dependencies": {
+    "vue": "^3.5.27"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.3",
+    "autoprefixer": "^10.4.24",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.19",
+    "vite": "^7.3.1"
+  }
+}
