@@ -2,10 +2,11 @@
 const currentYear = new Date().getFullYear()
 
 const quickLinks = [
-  { name: 'Početna', href: '#hero' },
-  { name: 'Usluge', href: '#services' },
-  { name: 'O nama', href: '#about' },
-  { name: 'Kontakt', href: '#contact' },
+  { name: 'Početna', to: '/' },
+  { name: 'Usluge', to: '/usluge' },
+  { name: 'O nama', to: '/o-nama' },
+  { name: 'Galerija', to: '/galerija' },
+  { name: 'Kontakt', to: '/kontakt' },
 ]
 
 const services = [
@@ -23,11 +24,13 @@ const services = [
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
         <!-- Brand Column -->
         <div class="lg:col-span-1">
-          <img 
-            src="/logo.png" 
-            alt="Vida Energija" 
-            class="h-10 w-auto brightness-0 invert mb-4"
-          />
+          <router-link to="/">
+            <img 
+              src="/logo.png" 
+              alt="Vida Energija" 
+              class="h-10 w-auto brightness-0 invert mb-4"
+            />
+          </router-link>
           <p class="text-gray-400 text-sm mt-4">
             Profesionalne elektroinstalaterske usluge sa višegodišnjim iskustvom. 
             Kvalitet i poverenje.
@@ -57,9 +60,9 @@ const services = [
           <h4 class="text-white font-semibold mb-4">Brzi linkovi</h4>
           <ul class="space-y-3">
             <li v-for="link in quickLinks" :key="link.name">
-              <a :href="link.href" class="hover:text-vida-400 transition-colors">
+              <router-link :to="link.to" class="hover:text-vida-400 transition-colors">
                 {{ link.name }}
-              </a>
+              </router-link>
             </li>
           </ul>
         </div>
@@ -69,9 +72,9 @@ const services = [
           <h4 class="text-white font-semibold mb-4">Usluge</h4>
           <ul class="space-y-3">
             <li v-for="service in services" :key="service">
-              <a href="#services" class="hover:text-vida-400 transition-colors">
+              <router-link to="/usluge" class="hover:text-vida-400 transition-colors">
                 {{ service }}
-              </a>
+              </router-link>
             </li>
           </ul>
         </div>
@@ -106,7 +109,7 @@ const services = [
       <!-- Bottom Bar -->
       <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
         <p class="text-sm text-gray-400">
-          © {{ currentYear }} Vida Energija. Sva prava zadržana.
+          © {{ currentYear }} Vida Energija | Sva prava zadržana | Web izrada: BaneVredniMrav
         </p>
         <div class="flex gap-6 text-sm">
           <a href="#" class="hover:text-vida-400 transition-colors">Politika privatnosti</a>

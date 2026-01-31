@@ -1,14 +1,21 @@
 <script setup>
 import { ref } from 'vue'
+import { useRoute } from 'vue-router'
 
 const isMenuOpen = ref(false)
+const route = useRoute()
 
 const navLinks = [
-  { name: 'Početna', href: '#hero' },
-  { name: 'Usluge', href: '#services' },
-  { name: 'O nama', href: '#about' },
-  { name: 'Kontakt', href: '#contact' },
+  { name: 'Početna', to: '/' },
+  { name: 'Usluge', to: '/usluge' },
+  { name: 'O nama', to: '/o-nama' },
+  { name: 'Galerija', to: '/galerija' },
+  { name: 'Kontakt', to: '/kontakt' },
 ]
+
+const isActive = (to) => {
+  return route.path === to
+}
 </script>
 
 <template>
@@ -16,27 +23,30 @@ const navLinks = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16 lg:h-20">
         <!-- Logo -->
-        <a href="#" class="flex items-center gap-2">
+        <router-link to="/" class="flex items-center gap-2">
           <img 
             src="/logo.png" 
             alt="Вида Енергија" 
             class="h-10 lg:h-12 w-auto"
           />
-        </a>
+        </router-link>
 
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center gap-8">
-          <a 
+          <router-link 
             v-for="link in navLinks" 
             :key="link.name"
-            :href="link.href"
-            class="text-gray-700 hover:text-vida-500 font-medium transition-colors"
+            :to="link.to"
+            :class="[
+              'font-medium transition-colors',
+              isActive(link.to) ? 'text-vida-500' : 'text-gray-700 hover:text-vida-500'
+            ]"
           >
             {{ link.name }}
-          </a>
-          <a href="#contact" class="btn-primary">
+          </router-link>
+          <router-link to="/kontakt" class="btn-primary">
             Zatražite ponudu
-          </a>
+          </router-link>
         </div>
 
         <!-- Mobile Menu Button -->
@@ -60,22 +70,25 @@ const navLinks = [
         class="md:hidden py-4 border-t border-gray-100"
       >
         <div class="flex flex-col gap-4">
-          <a 
+          <router-link 
             v-for="link in navLinks" 
             :key="link.name"
-            :href="link.href"
+            :to="link.to"
             @click="isMenuOpen = false"
-            class="text-gray-700 hover:text-vida-500 font-medium transition-colors py-2"
+            :class="[
+              'font-medium transition-colors py-2',
+              isActive(link.to) ? 'text-vida-500' : 'text-gray-700 hover:text-vida-500'
+            ]"
           >
             {{ link.name }}
-          </a>
-          <a 
-            href="#contact" 
+          </router-link>
+          <router-link 
+            to="/kontakt" 
             @click="isMenuOpen = false"
             class="btn-primary text-center"
           >
             Zatražite ponudu
-          </a>
+          </router-link>
         </div>
       </div>
     </div>
